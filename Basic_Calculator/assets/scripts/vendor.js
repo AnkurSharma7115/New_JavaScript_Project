@@ -41,39 +41,46 @@ function writeLogInObject(operators, operationNum, prevResult, newResult){
   console.log(logEntries);
 }
 
+    //defining inside IF ELSE IF block
+function calculateResult(calculationType){
+  const enteredNum = getUserInput();
+  const initialResult = currentResult;
+  let mathOperator;
+  if(calculationType=== "ADD"){
+    currentResult = currentResult + enteredNum;
+    mathOperator = "+";
+  }
+  else if(calculationType === "SUBTRACT"){
+    currentResult = currentResult - enteredNum;
+    mathOperator = "-";
+  }
+  else if(calculationType === "MULTIPLY"){
+    currentResult = currentResult * enteredNum;
+    mathOperator = "*";
+  }
+  else{
+    currentResult = currentResult / enteredNum;
+    mathOperator = "/";
+  }
+  
+  createAndWriteOutput(mathOperator, initialResult, enteredNum);
+  writeLogInObject(calculationType, enteredNum, initialResult, currentResult);
+  userInput.value = '';
+}
+
         // defining functions for Calculator Operations
     function add(){
-      const enteredNum = getUserInput();
-      const initialResult = currentResult;
-      currentResult = currentResult + enteredNum;
-      createAndWriteOutput('+', initialResult, enteredNum);
-      writeLogInObject('ADD', enteredNum, initialResult, currentResult);
-      userInput.value = '';
+      calculateResult("ADD");
     }
 
     function subtract(){
-      const enteredNum = getUserInput();
-      const initialResult = currentResult;
-      currentResult = currentResult - enteredNum;
-      createAndWriteOutput('-', initialResult, enteredNum);
-      writeLogInObject('SUBTRACT', enteredNum, initialResult, currentResult);
-      userInput.value = '';
+      calculateResult("SUBTRACT");
     }
     function multiply(){
-      const enteredNum = getUserInput();
-      const initialResult = currentResult;
-      currentResult = currentResult * enteredNum;
-      createAndWriteOutput('*', initialResult, enteredNum);
-      writeLogInObject('MULTIPLY', enteredNum, initialResult, currentResult);
-      userInput.value = '';
+      calculateResult("MULTIPLY");
     }
     function divide(){
-      const enteredNum = getUserInput();
-      const initialResult = currentResult;
-      currentResult = currentResult / enteredNum;
-      createAndWriteOutput('/', initialResult, enteredNum);
-      writeLogInObject('DIVIDE', enteredNum, initialResult, currentResult);
-      userInput.value = '';
+      calculateResult("DIVIDE");
     }
 
     //adding EventListener to the Button with respective functions.
