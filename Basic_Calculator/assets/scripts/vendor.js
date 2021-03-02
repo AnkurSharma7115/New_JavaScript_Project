@@ -8,6 +8,7 @@ const divideBtn = document.getElementById('btn-divide');
 const currentCalculationOutput = document.getElementById('current-calculation');
 const currentResultOutput = document.getElementById('current-result');
 
+// output on page
 function outputResult(text, result) {
   currentCalculationOutput.textContent = text;
   currentResultOutput.textContent = result;
@@ -44,6 +45,7 @@ function writeLogInObject(operators, operationNum, prevResult, newResult){
     //defining inside IF ELSE IF block
 function calculateResult(calculationType){
   const enteredNum = getUserInput();
+  if(!isNaN(enteredNum)){
   const initialResult = currentResult;
   let mathOperator;
   if(calculationType=== "ADD"){
@@ -66,6 +68,10 @@ function calculateResult(calculationType){
   createAndWriteOutput(mathOperator, initialResult, enteredNum);
   writeLogInObject(calculationType, enteredNum, initialResult, currentResult);
   userInput.value = '';
+}
+else{
+  return false
+}
 }
 
         // defining functions for Calculator Operations
