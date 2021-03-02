@@ -10,7 +10,7 @@ body {
   margin: 0;
 }
 
-header {
+header, footer{
   background: #023d6d;
   color: white;
   padding: 1rem;
@@ -76,4 +76,21 @@ header {
 #calc-actions {
   margin-top: 1rem;
   text-align: center;
+}
+.fa {
+ 
+  font-size: 50px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.fa:hover {
+   color: black;
+   background-color: white;
+}
+
+.fa-github {
+  
+  color: white;
 }
