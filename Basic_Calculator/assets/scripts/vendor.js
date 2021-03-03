@@ -45,33 +45,48 @@ function writeLogInObject(operators, operationNum, prevResult, newResult){
     //defining inside IF ELSE IF block
 function calculateResult(calculationType){
   const enteredNum = getUserInput();
-  if(!isNaN(enteredNum)){
-  const initialResult = currentResult;
-  let mathOperator;
-  if(calculationType=== "ADD"){
-    currentResult = currentResult + enteredNum;
-    mathOperator = "+";
+  if(!isNaN(enteredNum))
+  {
+        const initialResult = currentResult;
+        let mathOperator;
+        if(calculationType=== "ADD"){
+          currentResult = currentResult + enteredNum;
+          mathOperator = "+";
+        }
+        else if(calculationType === "SUBTRACT"){
+          currentResult = currentResult - enteredNum;
+          mathOperator = "-";
+        }
+        else if(calculationType === "MULTIPLY"){
+          currentResult = currentResult * enteredNum;
+          mathOperator = "*";
+        }
+        else{
+            if(enteredNum == 0){
+              alert("Can't Divide By 0(ZERO).\n Calculation will be reset to starting.\n Ignore divide by ZERO in future");
+              currentResult = 0;
+              logEntries = [];
+              createAndWriteOutput('+',0,0);
+              let text_to_change = currentCalculationOutput.childNodes[0];
+              text_to_change.nodeValue = '0';
+              userInput.value = '';
+              return;
+            }
+            else{
+              currentResult = currentResult / enteredNum;
+              
+            }
+            mathOperator = "/";
+        }
+        
+        createAndWriteOutput(mathOperator, initialResult, enteredNum);
+        writeLogInObject(calculationType, enteredNum, initialResult, currentResult);
+        userInput.value = '';
   }
-  else if(calculationType === "SUBTRACT"){
-    currentResult = currentResult - enteredNum;
-    mathOperator = "-";
+  else
+  {
+    return false;
   }
-  else if(calculationType === "MULTIPLY"){
-    currentResult = currentResult * enteredNum;
-    mathOperator = "*";
-  }
-  else{
-    currentResult = currentResult / enteredNum;
-    mathOperator = "/";
-  }
-  
-  createAndWriteOutput(mathOperator, initialResult, enteredNum);
-  writeLogInObject(calculationType, enteredNum, initialResult, currentResult);
-  userInput.value = '';
-}
-else{
-  return false
-}
 }
 
         // defining functions for Calculator Operations
